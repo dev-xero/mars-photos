@@ -17,7 +17,10 @@ fun HomeScreen(
 	modifier: Modifier = Modifier
 ) {
 
-
+	ResultScreen(
+		marsUiState = marsUiState,
+		modifier = modifier
+	)
 }
 
 @Composable
