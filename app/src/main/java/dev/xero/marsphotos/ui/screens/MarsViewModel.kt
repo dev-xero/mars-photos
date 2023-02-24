@@ -9,6 +9,13 @@ import dev.xero.marsphotos.network.MarsApi
 import kotlinx.coroutines.launch
 import java.io.IOException
 
+sealed interface MarsUiState {
+	object Loading : MarsUiState
+	object Error : MarsUiState
+
+	data class Success(val photos: String) : MarsUiState
+}
+
 class MarsViewModel: ViewModel() {
 	var marsUiState: String by mutableStateOf("")
 		private set
