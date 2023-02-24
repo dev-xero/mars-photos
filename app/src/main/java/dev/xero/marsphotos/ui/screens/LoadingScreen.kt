@@ -1,13 +1,19 @@
 package dev.xero.marsphotos.ui.screens
 
+import androidx.compose.animation.core.*
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.foundation.layout.size
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import dev.xero.marsphotos.R
+import kotlinx.coroutines.delay
 
 @Composable
 fun LoadingScreen(
@@ -17,6 +23,20 @@ fun LoadingScreen(
 		modifier = modifier.fillMaxSize(),
 		contentAlignment = Alignment.Center
 	) {
-		Text(text = stringResource(id = R.string.loading))
+		var rotationState by remember { mutableStateOf(0f) }
+		LaunchedEffect(Unit) {
+			while (true) {
+				delay(16)
+				rotationState = (rotationState + 4f) % 360f
+			}
+		}
+
+		Image(
+			modifier = Modifier
+				.size(200.dp)
+				.rotate(rotationState),
+			painter = painterResource(id = R.drawable.loading_img),
+			contentDescription = stringResource(id = R.string.loading)
+		)
 	}
 }
