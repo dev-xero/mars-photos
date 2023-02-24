@@ -1,6 +1,6 @@
 package dev.xero.marsphotos.data
 
-import dev.xero.marsphotos.network.MarsPhoto
+import dev.xero.marsphotos.api.MarsPhoto
 
 interface MarsPhotoRepository {
 	suspend fun getPhotos():

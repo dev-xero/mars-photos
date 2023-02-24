@@ -1,4 +1,4 @@
-package dev.xero.marsphotos.network
+package dev.xero.marsphotos.api
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

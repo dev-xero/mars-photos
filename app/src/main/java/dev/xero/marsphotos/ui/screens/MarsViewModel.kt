@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dev.xero.marsphotos.network.MarsApi
+import dev.xero.marsphotos.api.MarsApi
 import kotlinx.coroutines.launch
 import java.io.IOException
 

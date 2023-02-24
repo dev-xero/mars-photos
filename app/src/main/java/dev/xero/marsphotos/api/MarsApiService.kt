@@ -1,4 +1,4 @@
-package dev.xero.marsphotos.network
+package dev.xero.marsphotos.api
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
