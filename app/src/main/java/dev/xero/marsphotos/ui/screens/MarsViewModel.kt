@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dev.xero.marsphotos.api.MarsApi
+import dev.xero.marsphotos.data.MarsPhotoImplementation
 import kotlinx.coroutines.launch
 import java.io.IOException
 
@@ -27,7 +27,7 @@ class MarsViewModel: ViewModel() {
 	private fun getMarsPhotos() {
 		viewModelScope.launch {
 			marsUiState = try {
-				MarsUiState.Success("Success: ${MarsApi.marsApiService.getPhotos().size} Mars Photos retrieved")
+				MarsUiState.Success("Success: ${MarsPhotoImplementation().getPhotos().size} Mars Photos retrieved")
 			} catch (e: IOException) {
 				MarsUiState.Error
 			}
