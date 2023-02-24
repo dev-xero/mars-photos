@@ -1,10 +1,13 @@
 package dev.xero.marsphotos.data
 
 import dev.xero.marsphotos.api.MarsApi
+import dev.xero.marsphotos.api.MarsApiServiceInterface
 import dev.xero.marsphotos.api.MarsPhoto
 
-class MarsPhotoImplementation : MarsPhotoRepository {
+class MarsPhotoImplementation(
+	private val marsApiService: MarsApiServiceInterface
+) : MarsPhotoRepository {
 	override suspend fun getPhotos(): List<MarsPhoto> {
-		return MarsApi.marsApiService.getPhotos()
+		return marsApiService.getPhotos()
 	}
 }
