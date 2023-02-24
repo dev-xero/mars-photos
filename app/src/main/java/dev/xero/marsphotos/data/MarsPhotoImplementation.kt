@@ -5,6 +5,6 @@ import dev.xero.marsphotos.api.MarsPhoto
 
 class MarsPhotoImplementation : MarsPhotoRepository {
 	override suspend fun getPhotos(): List<MarsPhoto> {
-		return MarsApi.retrofitService.getPhotos()
+		return MarsApi.marsApiService.getPhotos()
 	}
 }
