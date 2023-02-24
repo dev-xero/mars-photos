@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dev.xero.marsphotos.network.MarsApi
 import kotlinx.coroutines.launch
+import java.io.IOException
 
 class MarsViewModel: ViewModel() {
 	var marsUiState: String by mutableStateOf("")
@@ -18,7 +19,11 @@ class MarsViewModel: ViewModel() {
 
 	private fun getMarsPhotos() {
 		viewModelScope.launch {
-			marsUiState = MarsApi.retrofitService.getPhotos()
+			marsUiState = try {
+				MarsApi.retrofitService.getPhotos()
+			} catch (e: IOException) {
+				"Could not fetch data from the server at this time. Try checking your internet connection."
+			}
 		}
 	}
 }
