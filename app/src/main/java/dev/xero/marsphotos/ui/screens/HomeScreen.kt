@@ -13,19 +13,23 @@ import dev.xero.marsphotos.ui.theme.MarsPhotosTheme
 
 @Composable
 fun HomeScreen(
-	marsUiState: String,
+	marsUiState: MarsUiState,
 	modifier: Modifier = Modifier
 ) {
 
-	ResultScreen(
-		marsUiState = marsUiState,
-		modifier = modifier
-	)
+	when (marsUiState) {
+		is MarsUiState.Success -> ResultScreen(
+			marsUiState = marsUiState,
+			modifier = modifier
+		)
+		is MarsUiState.Loading -> {}
+		is MarsUiState.Error -> {}
+	}
 }
 
 @Composable
 fun ResultScreen(
-	marsUiState: String,
+	marsUiState: MarsUiState.Success,
 	modifier: Modifier = Modifier
 ) {
 
@@ -34,14 +38,6 @@ fun ResultScreen(
 		modifier = modifier.fillMaxSize(),
 	) {
 
-		Text(text = marsUiState)
-	}
-}
-
-@Preview(showBackground = true)
-@Composable
-fun ResultScreenPreview() {
-	MarsPhotosTheme {
-		ResultScreen(stringResource(R.string.placeholder_result))
+		Text(text = marsUiState.photos)
 	}
 }
