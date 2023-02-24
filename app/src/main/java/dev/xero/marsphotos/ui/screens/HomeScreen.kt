@@ -22,8 +22,8 @@ fun HomeScreen(
 			marsUiState = marsUiState,
 			modifier = modifier
 		)
-		is MarsUiState.Loading -> {}
-		is MarsUiState.Error -> {}
+		is MarsUiState.Loading -> LoadingScreen()
+		is MarsUiState.Error -> ErrorScreen()
 	}
 }
 
