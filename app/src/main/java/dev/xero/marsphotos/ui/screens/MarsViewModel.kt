@@ -17,7 +17,7 @@ sealed interface MarsUiState {
 }
 
 class MarsViewModel: ViewModel() {
-	var marsUiState: String by mutableStateOf("")
+	var marsUiState: MarsUiState by mutableStateOf(MarsUiState.Loading)
 		private set
 
 	init {
@@ -27,9 +27,9 @@ class MarsViewModel: ViewModel() {
 	private fun getMarsPhotos() {
 		viewModelScope.launch {
 			marsUiState = try {
-				MarsApi.retrofitService.getPhotos()
+				MarsUiState.Success(MarsApi.retrofitService.getPhotos())
 			} catch (e: IOException) {
-				"Could not fetch data from the server at this time. Try checking your internet connection."
+				MarsUiState.Error
 			}
 		}
 	}
