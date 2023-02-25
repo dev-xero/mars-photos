@@ -9,8 +9,8 @@ import kotlinx.coroutines.test.setMain
 import org.junit.rules.TestWatcher
 import org.junit.runner.Description
 
-class TestDispatcherRule(
-	val testDispatcher: TestDispatcher = UnconfinedTestDispatcher()
+class TestDispatcherRule @OptIn(ExperimentalCoroutinesApi::class) constructor(
+	private val testDispatcher: TestDispatcher = UnconfinedTestDispatcher()
 ) : TestWatcher() {
 
 	@OptIn(ExperimentalCoroutinesApi::class)
