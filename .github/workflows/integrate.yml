@@ -2,7 +2,7 @@ name: Mars Photos CI, BUILD, TEST AND DEPLOY
 
 on:
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
     
 jobs:
   build:
