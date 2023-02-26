@@ -44,7 +44,8 @@ class MarsViewModel(
 	private fun getMarsPhotos() {
 		viewModelScope.launch {
 			marsUiState = try {
-				MarsUiState.Success("Success: ${marsPhotoRepository.getPhotos().size} Mars Photos retrieved")
+				val result = marsPhotoRepository.getPhotos()[0]
+				MarsUiState.Success("First Mars Image URL: ${result.imgSrc}")
 			} catch (e: IOException) {
 				MarsUiState.Error
 			}
