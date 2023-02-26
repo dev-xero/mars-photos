@@ -20,7 +20,7 @@ sealed interface MarsUiState {
 	object Loading : MarsUiState
 	object Error : MarsUiState
 
-	data class Success(val photos: MarsPhoto) : MarsUiState
+	data class Success(val photos: List<MarsPhoto>) : MarsUiState
 }
 
 class MarsViewModel(
@@ -46,7 +46,7 @@ class MarsViewModel(
 	private fun getMarsPhotos() {
 		viewModelScope.launch {
 			marsUiState = try {
-				val result = marsPhotoRepository.getPhotos()[0]
+				val result = marsPhotoRepository.getPhotos()
 				MarsUiState.Success(result)
 			} catch (e: IOException) {
 				MarsUiState.Error
