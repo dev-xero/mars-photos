@@ -6,6 +6,12 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
+import dev.xero.marsphotos.R
+import dev.xero.marsphotos.api.MarsPhoto
 
 @Composable
 fun HomeScreen(
@@ -14,10 +20,7 @@ fun HomeScreen(
 ) {
 
 	when (marsUiState) {
-		is MarsUiState.Success -> ResultScreen(
-			marsUiState = marsUiState,
-			modifier = modifier
-		)
+		is MarsUiState.Success -> MarsPhotoCard(photo = marsUiState.photos)
 		is MarsUiState.Loading -> LoadingScreen()
 		is MarsUiState.Error -> ErrorScreen()
 	}
@@ -34,6 +37,21 @@ fun ResultScreen(
 		modifier = modifier.fillMaxSize(),
 	) {
 
-		Text(text = marsUiState.photos)
+	// Text(text = marsUiState.photos)
 	}
+}
+
+@Composable
+fun MarsPhotoCard(
+	photo: MarsPhoto,
+	modifier: Modifier = Modifier
+) {
+	AsyncImage(
+		model = ImageRequest
+			.Builder(context = LocalContext.current)
+			.data(photo.imgSrc)
+			.crossfade(true)
+			.build(),
+		contentDescription = stringResource(id = R.string.mars_photo)
+	)
 }
