@@ -6,6 +6,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import coil.compose.AsyncImage
@@ -52,6 +53,7 @@ fun MarsPhotoCard(
 			.data(photo.imgSrc)
 			.crossfade(true)
 			.build(),
-		contentDescription = stringResource(id = R.string.mars_photo)
+		contentDescription = stringResource(id = R.string.mars_photo),
+		contentScale = ContentScale.FillBounds
 	)
 }
