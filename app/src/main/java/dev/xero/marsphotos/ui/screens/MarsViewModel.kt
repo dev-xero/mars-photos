@@ -47,7 +47,6 @@ class MarsViewModel(
 		viewModelScope.launch {
 			marsUiState = try {
 				val result = marsPhotoRepository.getPhotos()[0]
-				Log.d("APP", result.toString())
 				MarsUiState.Success(result)
 			} catch (e: IOException) {
 				MarsUiState.Error
