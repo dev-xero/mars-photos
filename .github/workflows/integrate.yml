@@ -14,5 +14,6 @@ jobs:
         with:
           java-version: 18
           distribution: 'adopt'
+          cache: gradle
       - name: Build with Gradle
         run: ./gradlew build
